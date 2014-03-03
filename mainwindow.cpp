@@ -19,9 +19,16 @@ MainWindow::MainWindow(QWidget *parent) :
     container->setMaximumSize(160, 160);
     container->setFocusPolicy(Qt::TabFocus);
 
-    /* NB: We load the QML (and all images within the QML) from a .qrc file becuase
-     * the Qt build step that packages the final .app on Mac forgets to add the
-     * QML and images if you reference them directly
+    // Enable transparent background on the QQuickView
+    QSurfaceFormat surfaceFormat;
+    surfaceFormat.setAlphaBufferSize(8);
+    view->setFormat(surfaceFormat);
+    view->setClearBeforeRendering(true);
+    view->setColor(QColor(Qt::transparent));
+
+    /* NB: We load the QML from a .qrc file becuase the Qt build step
+     * that packages the final .app on Mac forgets to add the QML
+     * if you reference it directly
      */
     view->setSource(QUrl("qrc:/res/virtual_joystick.qml"));
     ui->verticalLayout->addWidget(container);

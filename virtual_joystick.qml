@@ -1,10 +1,10 @@
 import QtQuick 2.1
 
 Rectangle {
-    id: rectangle
+    id: root
     width: joystick.width
     height: joystick.height
-    visible: true
+    color: "transparent"
 
     signal joystick_moved(double x, double y);
 
