@@ -18,6 +18,11 @@ MainWindow::MainWindow(QWidget *parent) :
     container->setMinimumSize(160, 160);
     container->setMaximumSize(160, 160);
     container->setFocusPolicy(Qt::TabFocus);
+
+    /* NB: We load the QML (and all images within the QML) from a .qrc file becuase
+     * the Qt build step that packages the final .app on Mac forgets to add the
+     * QML and images if you reference them directly
+     */
     view->setSource(QUrl("qrc:/res/virtual_joystick.qml"));
     ui->verticalLayout->addWidget(container);
 
