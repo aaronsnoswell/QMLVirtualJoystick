@@ -4,7 +4,7 @@ Rectangle {
     id: root
     width: joystick.width
     height: joystick.height
-    color: "transparent"
+    color: "#00ffffff"
 
     signal joystick_moved(double x, double y);
 

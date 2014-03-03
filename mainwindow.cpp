@@ -19,16 +19,18 @@ MainWindow::MainWindow(QWidget *parent) :
     container->setMaximumSize(160, 160);
     container->setFocusPolicy(Qt::TabFocus);
 
+#ifndef _WIN32
     /* Enable transparent background on the QQuickView
-     * This has the added benefit of making the QML draw itsef initially.
-     * Without this, the QML does not draw itself until interacted with (unless
-     * you run an animation when it initializes).
+     * Note that this currently does not work on Windows
+     * and give a warning on startup if not disabled using
+     * #ifndef's
      */
     QSurfaceFormat surfaceFormat;
     surfaceFormat.setAlphaBufferSize(8);
     view->setFormat(surfaceFormat);
     view->setClearBeforeRendering(true);
     view->setColor(QColor(Qt::transparent));
+#endif
 
     /* NB: We load the QML from a .qrc file becuase the Qt build step
      * that packages the final .app on Mac forgets to add the QML
