@@ -73,6 +73,7 @@ Rectangle {
         }
     }
 
-    // HACK ajs 03/Mar/14 - Nudge an image to force the QML to redraw itself initially
+    // HACK ajs 03/Mar/14 - Nudge an image to force the QML to redraw itself
+    // without this the QML widget does not show intially
     Component.onCompleted: nudgeAnimation.start(), returnAnimation.start();
 }

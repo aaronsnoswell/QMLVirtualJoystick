@@ -23,7 +23,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Attach to the 'mouse moved' signal
     QQuickItem *root = view->rootObject();
-    connect(root, SIGNAL(joystick_moved(double, double)), this, SLOT(joystick_moved(double, double)));
+    connect(
+        root,
+        SIGNAL(joystick_moved(double, double)),
+        this,
+        SLOT(joystick_moved(double, double))
+    );
 }
 
 MainWindow::~MainWindow()

@@ -4,20 +4,19 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets quick
+QT += core gui quick
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = VirtualJoystickForm
+TARGET = QMLVirtualJoystick
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp
+SOURCES += main.cpp mainwindow.cpp
 
-HEADERS  += mainwindow.h
+HEADERS += mainwindow.h
 
-FORMS    += mainwindow.ui
+FORMS += mainwindow.ui
 
 OTHER_FILES += \
     finger.png \
