@@ -2,6 +2,8 @@
 
 An example of embedding a QML Virtual Joystick within a Qt form.
 
+![Screenshot of program](https://raw.github.com/aaronsnoswell/QMLVirtualJoystick/master/screen_shot.png)
+
 ## Introduction
 
 I've patched together examples at
