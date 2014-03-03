@@ -26,7 +26,7 @@ Tested on Mac OSX 10.9.1
 
 ## Licence
 
-Copyright [2014] [Aaron Snoswell]
+Copyright 2014 Aaron Snoswell
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
