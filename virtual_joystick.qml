@@ -44,13 +44,16 @@ Rectangle {
             property real distanceBound : width * 0.5 - thumb.width * 0.5
             property real distanceBound2 : distanceBound * distanceBound
 
-            property double signal_x : Math.min(Math.max(mouseX, 0), joystick.width) / joystick.width
-            property double signal_y : (1 - (Math.min(Math.max(mouseY, 0), joystick.height) / joystick.height))
+            property double signal_x : (mouseX - joystick.width/2) / distanceBound
+            property double signal_y : -(mouseY - joystick.height/2) / distanceBound
 
             anchors.fill: parent
 
             onPressed: returnAnimation.stop()
-            onReleased: returnAnimation.restart()
+            onReleased: {
+                returnAnimation.restart()
+                joystick_moved(0, 0);
+            }
             onPositionChanged: {
                 if (fingerOutOfBounds) {
                     thumb.anchors.horizontalCenterOffset = mcx
@@ -62,7 +65,8 @@ Rectangle {
                 }
 
                 // Fire the signal to indicate the joystick has moved
-                joystick_moved(signal_x, signal_y);
+                angle = Math.atan2(signal_y, signal_x)
+                joystick_moved(Math.cos(angle), Math.sin(angle));
             }
         }
 
