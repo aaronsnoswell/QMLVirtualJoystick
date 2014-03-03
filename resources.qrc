@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>background.png</file>
+        <file>finger.png</file>
+        <file>virtual_joystick.qml</file>
+    </qresource>
+</RCC>
