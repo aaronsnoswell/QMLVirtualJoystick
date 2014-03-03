@@ -25,15 +25,6 @@ Rectangle {
                 to: 0; duration: 200; easing.type: Easing.OutSine }
         }
 
-
-        ParallelAnimation {
-            id: nudgeAnimation
-            NumberAnimation { target: thumb.anchors; property: "horizontalCenterOffset";
-                to: 1; duration: 1; easing.type: Easing.OutSine }
-            NumberAnimation { target: thumb.anchors; property: "verticalCenterOffset";
-                to: 1; duration: 1; easing.type: Easing.OutSine }
-        }
-
         MouseArea {
             id: mouse
             property real fingerAngle : Math.atan2(mouseX, mouseY)
@@ -76,8 +67,4 @@ Rectangle {
             anchors.centerIn: parent
         }
     }
-
-    // HACK ajs 03/Mar/14 - Nudge an image to force the QML to redraw itself
-    // without this the QML widget does not show intially
-    Component.onCompleted: nudgeAnimation.start(), returnAnimation.start();
 }

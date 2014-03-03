@@ -19,7 +19,11 @@ MainWindow::MainWindow(QWidget *parent) :
     container->setMaximumSize(160, 160);
     container->setFocusPolicy(Qt::TabFocus);
 
-    // Enable transparent background on the QQuickView
+    /* Enable transparent background on the QQuickView
+     * This has the added benefit of making the QML draw itsef initially.
+     * Without this, the QML does not draw itself until interacted with (unless
+     * you run an animation when it initializes).
+     */
     QSurfaceFormat surfaceFormat;
     surfaceFormat.setAlphaBufferSize(8);
     view->setFormat(surfaceFormat);
