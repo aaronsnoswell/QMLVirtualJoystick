@@ -4,7 +4,7 @@ Rectangle {
     id: root
     width: joystick.width
     height: joystick.height
-    color: "#00ffffff"
+    color: "transparent"
 
     signal joystick_moved(double x, double y);
 
@@ -30,7 +30,7 @@ Rectangle {
             property real fingerAngle : Math.atan2(mouseX, mouseY)
             property int mcx : mouseX - width * 0.5
             property int mcy : mouseY - height * 0.5
-            property bool fingerOutOfBounds : fingerDistance2 < distanceBound2
+            property bool fingerInBounds : fingerDistance2 < distanceBound2
             property real fingerDistance2 : mcx * mcx + mcy * mcy
             property real distanceBound : width * 0.5 - thumb.width * 0.5
             property real distanceBound2 : distanceBound * distanceBound
@@ -40,13 +40,17 @@ Rectangle {
 
             anchors.fill: parent
 
-            onPressed: returnAnimation.stop()
+            onPressed: {
+                returnAnimation.stop();
+            }
+
             onReleased: {
                 returnAnimation.restart()
                 joystick_moved(0, 0);
             }
+
             onPositionChanged: {
-                if (fingerOutOfBounds) {
+                if (fingerInBounds) {
                     thumb.anchors.horizontalCenterOffset = mcx
                     thumb.anchors.verticalCenterOffset = mcy
                 } else {
@@ -57,7 +61,18 @@ Rectangle {
 
                 // Fire the signal to indicate the joystick has moved
                 angle = Math.atan2(signal_y, signal_x)
-                joystick_moved(Math.cos(angle), Math.sin(angle));
+
+                if(fingerInBounds) {
+                    joystick_moved(
+                        Math.cos(angle) * Math.sqrt(fingerDistance2) / distanceBound,
+                        Math.sin(angle) * Math.sqrt(fingerDistance2) / distanceBound
+                    );
+                } else {
+                    joystick_moved(
+                        Math.cos(angle) * 1,
+                        Math.sin(angle) * 1
+                    );
+                }
             }
         }
 
