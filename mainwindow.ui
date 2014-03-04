@@ -14,16 +14,16 @@
    <string>QML Virtual Joystick Example</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>160</width>
-      <height>160</height>
+      <width>161</width>
+      <height>161</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout"/>
+    <layout class="QGridLayout" name="gridLayout"/>
    </widget>
   </widget>
  </widget>

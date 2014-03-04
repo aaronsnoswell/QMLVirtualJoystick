@@ -14,30 +14,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     QQuickView *view = new QQuickView();
-    QWidget *container = QWidget::createWindowContainer(view, this);
-    container->setMinimumSize(160, 160);
-    container->setMaximumSize(160, 160);
-    container->setFocusPolicy(Qt::TabFocus);
-
-#ifndef _WIN32
-    /* Enable transparent background on the QQuickView
-     * Note that this currently does not work on Windows
-     * and give a warning on startup if not disabled using
-     * #ifndef's
-     */
-    QSurfaceFormat surfaceFormat;
-    surfaceFormat.setAlphaBufferSize(8);
-    view->setFormat(surfaceFormat);
-    view->setClearBeforeRendering(true);
-    view->setColor(QColor(Qt::transparent));
-#endif
 
     /* NB: We load the QML from a .qrc file becuase the Qt build step
      * that packages the final .app on Mac forgets to add the QML
      * if you reference it directly
      */
     view->setSource(QUrl("qrc:/res/virtual_joystick.qml"));
-    ui->verticalLayout->addWidget(container);
+
+    /* Enable transparent background on the QQuickView
+     * Note that this currently does not work on Windows
+     */
+#ifndef _WIN32
+    view->setClearBeforeRendering(true);
+    view->setColor(QColor(Qt::transparent));
+#endif
 
     // Attach to the 'mouse moved' signal
     QQuickItem *root = view->rootObject();
@@ -47,6 +37,13 @@ MainWindow::MainWindow(QWidget *parent) :
         this,
         SLOT(joystick_moved(double, double))
     );
+
+    // Create a container widget for the QQuickView
+    QWidget *container = QWidget::createWindowContainer(view, this);
+    container->setMinimumSize(160, 160);
+    container->setMaximumSize(160, 160);
+    container->setFocusPolicy(Qt::TabFocus);
+    ui->gridLayout->addWidget(container);
 }
 
 MainWindow::~MainWindow()
