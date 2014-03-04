@@ -9,7 +9,7 @@ An example of embedding a QML Virtual Joystick within a Qt form.
 I've patched together examples at
 [http://qt-project.org/forums/viewthread/21118](http://qt-project.org/forums/viewthread/21118)
 and [http://kunalmaemo.blogspot.com.au/2011/11/virtual-joystick-with-qml.html](http://qt-project.org/forums/viewthread/21118)
-and other places to create a stand-along project that demonstrates how to
+and other places to create a stand-alone project that demonstrates how to
 create a simple virtual joystick.
 
 Released under the Apache 2.0 Licence.
