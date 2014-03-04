@@ -22,7 +22,7 @@ you should see the current mouse position displayed in the `qDebug()` console.
 
 Requires Qt 5.1.1+
 
-Tested on Mac OSX 10.9.1
+Tested on Mac OSX 10.9.1 and Windows 7, 64 bit.
 
 ## Licence
 
