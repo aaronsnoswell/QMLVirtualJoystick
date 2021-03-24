@@ -6,25 +6,40 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>180</width>
-    <height>180</height>
+    <width>452</width>
+    <height>265</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>QML Virtual Joystick Example</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="gridLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>161</width>
-      <height>161</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout"/>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="1">
+     <widget class="QGroupBox" name="groupBoxXY">
+      <property name="title">
+       <string>X-Y</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayoutXY"/>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QGroupBox" name="groupBoxVertical">
+      <property name="title">
+       <string>Vertical</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayoutVertical"/>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QGroupBox" name="groupBoxHorizontal">
+      <property name="title">
+       <string>Horizontal</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayoutHorizontal"/>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

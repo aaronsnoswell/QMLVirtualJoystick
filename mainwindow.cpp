@@ -12,9 +12,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    addJoyStick(ui->gridLayoutXY);
+    addJoyStick(ui->gridLayoutHorizontal, HorizontalOnly);
+    addJoyStick(ui->gridLayoutVertical, VerticalOnly);
+}
 
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::addJoyStick(QLayout *layout_, JoyType type)
+{
     QQuickView *view = new QQuickView();
-
     /* NB: We load the QML from a .qrc file becuase the Qt build step
      * that packages the final .app on Mac forgets to add the QML
      * if you reference it directly
@@ -30,7 +40,11 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
 
     // Attach to the 'mouse moved' signal
-    QQuickItem *root = view->rootObject();
+    auto *root = view->rootObject();
+    if (type == HorizontalOnly)
+        root->setProperty("horizontalOnly", true);
+    else if (type == VerticalOnly)
+        root->setProperty("verticalOnly", true);
     connect(
         root,
         SIGNAL(joystick_moved(double, double)),
@@ -43,12 +57,7 @@ MainWindow::MainWindow(QWidget *parent) :
     container->setMinimumSize(160, 160);
     container->setMaximumSize(160, 160);
     container->setFocusPolicy(Qt::TabFocus);
-    ui->gridLayout->addWidget(container);
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
+    layout_->addWidget(container);
 }
 
 /**
